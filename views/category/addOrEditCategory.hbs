@@ -1,0 +1,24 @@
+<h3>{{viewTitle}}</h3>
+<form action="/categories/addCategory" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{category._id}}">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="{{category.title}}" placeholder="Title" required="true">
+        <div class="text-danger">
+            {{category.titleError}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea type="text" class="form-control" name="desc" placeholder="Description" required="true">{{category.desc}} </textarea>
+        <div class="text-danger">
+            {{category.descError}}
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+        <a href="/categories/" class="btn btn-danger">
+            <i class="fa fa-list-alt"></i>View All
+        </a>
+    </div>
+</form>

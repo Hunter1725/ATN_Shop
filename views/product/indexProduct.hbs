@@ -1,0 +1,56 @@
+<h3>
+    Product List
+</h3>
+<h3>
+    <a href="/products/addProduct" class="btn btn-danger">
+        <i class="fa fa-plus"> </i> Create New
+    </a>
+</h3>
+
+<form action="/products/search" method="POST" autocomplete="off">
+    <div class="form-group">
+        <label>Search product</label>
+        <input type="text" class="form-control" name="search" placeholder="Search details" required="true" style="width: 400px;">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i>Search</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Supplier</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.desc}}</td>
+            <td>{{this.supplier}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.price}}</td>
+            <td><img width="150px" height="150px" src="/images/{{{this.image}}}" alt=""></td>
+            <td>{{this.tt}}</td>
+            <td>
+                <a href="/products/{{this._id}}">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                </a>
+                <a href="/products/delete/{{this._id}}"
+                    onclick="return confirm('Are you sure to delete this record?');">
+                    <i class="fa fa-trash fa-lg" aria-hidden="true">
+                    </i>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

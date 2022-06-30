@@ -1,0 +1,66 @@
+<h3>{{viewTitle}}</h3>
+<form action="/products/addProduct" method="POST" autocomplete="off" enctype="multipart/form-data">
+    <input type="hidden" name="_id" value="{{product._id}}">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="{{product.title}}" placeholder="Title" required="true">
+        <div class="text-danger">
+            {{product.titleError}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Supplier</label>
+        <select name="supplier" id="" class="form-control" value="{{product.supplier}}">
+            {{#each suppliers}}
+            <option value="{{{title}}}">{{{title}}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea type="text" class="form-control" name="desc" placeholder="Description" required="true">{{product.desc}}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <select name="category" id="" class="form-control" value="{{product.category}}">
+            {{#each categories}}
+            <option value="{{{title}}}">{{{title}}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" name="price" value="{{product.price}}" placeholder="Price" required="true">
+    </div>
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" class="form-control" name="avatar"  placeholder="Image" required="true" id="img">
+        <img src="#" id="imgPreview" alt=" ">
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" class="form-control" name="tt" value="{{product.tt}}" placeholder="Quantity" required="true">
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+        <a href="/products/" class="btn btn-danger">
+            <i class="fa fa-list-alt"></i>View All
+        </a>
+    </div>
+</form>
+<script>
+      function readURL(input){
+        if(input.files && input.files[0]){
+          var reader=new FileReader();
+          reader.onload=function(e){
+            $("#imgPreview").attr('src',e.target.result).width(100).height(100);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#img").change(function(){
+        readURL(this);
+      })
+</script>
+
